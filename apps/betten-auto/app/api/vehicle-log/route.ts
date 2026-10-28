@@ -1,0 +1,3 @@
+import {enforceRoute} from '../../../lib/access';
+import {db,json,safeError} from '../../../lib/server';
+export async function GET(req:Request){try{await enforceRoute(req);const vin=new URL(req.url).searchParams.get('vin')||'';if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin))return json({error:'Choose a vehicle.'},400);const events=await db().prepare("SELECT * FROM audit WHERE record_id=? OR json_extract(data,'$.vin')=? ORDER BY created_at DESC,id DESC LIMIT 201").bind(vin,vin).all();return json({events:events.results.map((e:any)=>({...e,data:JSON.parse(e.data)})),limited:events.results.length===201});}catch(e){return json({error:safeError(e)},400)}}

@@ -1,0 +1,8 @@
+import {getAccess} from '../../../../lib/access';
+import {can} from '../../../../lib/access-model';
+import {db,json,safeError,workspace} from '../../../../lib/server';
+import {decodePublicVin,recallInfo,fuelMenu,fuelVehicle} from '../../../../lib/vehicle-research';
+export async function GET(req:Request){try{const access=await getAccess(req);if(!can(access,'inventory'))return json({error:'Vehicle research is restricted.'},403);const q=new URL(req.url).searchParams,vin=(q.get('vin')||'').toUpperCase();if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin))throw Error('Enter a valid VIN.');const w=await workspace();const vehicle=[...w.vehicles,...w.archivedVehicles].find(v=>v.vin===vin);if(!vehicle)throw Error('Vehicle is not in dealership inventory.');const year=Number(vehicle.year),make=String(vehicle.make||''),model=String(vehicle.model||'');const database=db();if(!Number.isInteger(year)||year<1980||year>2100||!make||!model)throw Error('Vehicle year, make and model are needed.');
+ const specifications=await decodePublicVin(database,vin);const decoded=specifications.data;const validDecode=decoded&&String(decoded.errorCode).split(',').every((c:string)=>c.trim()==='0');const recallMake=validDecode?decoded.make:make,recallModel=validDecode?decoded.model:model;
+ const [recalls,epa]=await Promise.all([recallInfo(database,year,recallMake,recallModel),fuelMenu(database,year,make,model,q.get('model')||undefined)]);let fuel=null;if(q.has('id')){const id=q.get('id')!;if(!epa.options.some((o:any)=>o.value===id))throw Error('Choose a configuration from the EPA list.');fuel=await fuelVehicle(database,id,year,epa.make,epa.selectedModel);}
+ return json({vin,specifications,recalls,epa,fuel});}catch(e){return json({error:safeError(e)},400)}}

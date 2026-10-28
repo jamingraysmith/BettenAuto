@@ -1,0 +1,13 @@
+**/node_modules/
+**/dist/
+**/.next/
+**/.vinext/
+**/.wrangler/
+**/.sites-runtime/
+**/.verification/
+**/outputs/
+**/.env*
+**/.dev.vars*
+**/*.pem
+**/*.tsbuildinfo
+.DS_Store

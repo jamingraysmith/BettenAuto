@@ -1,0 +1,273 @@
+{
+  "observedAt": "2026-10-22T13:13:17.822Z",
+  "uniqueVehicles": 632,
+  "retailVehicles": 632,
+  "wholesaleVehicles": 0,
+  "expandedVehicles": 8,
+  "liveAggregateVehicles": 5766,
+  "sources": [
+    {
+      "id": "browser-crown-used",
+      "url": "https://www.crownvolkswagen.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 477,
+      "retailCount": 430,
+      "wholesaleExcluded": 47,
+      "observedAt": "2026-10-22T13:10:30.860Z"
+    },
+    {
+      "id": "browser-volvo-kalamazoo-used",
+      "url": "https://www.volvocarskalamazoo.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 73,
+      "retailCount": 73,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:10:45.391Z"
+    },
+    {
+      "id": "browser-mercedes-kalamazoo-used",
+      "url": "https://www.mercedesbenzofkalamazoo.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 18,
+      "retailCount": 18,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:10:54.099Z"
+    },
+    {
+      "id": "mb-edhicks-new-c-class",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/c-class",
+      "status": "verified",
+      "expectedCount": 15,
+      "retailCount": 15,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:19:09.819Z"
+    },
+    {
+      "id": "mb-edhicks-new-cla",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/cla",
+      "status": "verified",
+      "expectedCount": 8,
+      "retailCount": 8,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:12.205Z"
+    },
+    {
+      "id": "mb-edhicks-new-cle",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/cle",
+      "status": "verified",
+      "expectedCount": 1,
+      "retailCount": 1,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:41.111Z"
+    },
+    {
+      "id": "mb-edhicks-new-e-class",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/e-class",
+      "status": "verified",
+      "expectedCount": 10,
+      "retailCount": 10,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:10.423Z"
+    },
+    {
+      "id": "mb-edhicks-new-g-class",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/g-class",
+      "status": "verified",
+      "expectedCount": 2,
+      "retailCount": 2,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:40.100Z"
+    },
+    {
+      "id": "mb-edhicks-new-gla",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/gla",
+      "status": "verified",
+      "expectedCount": 8,
+      "retailCount": 8,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:08.580Z"
+    },
+    {
+      "id": "mb-edhicks-new-glb",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/glb",
+      "status": "verified",
+      "expectedCount": 8,
+      "retailCount": 8,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:07.165Z"
+    },
+    {
+      "id": "mb-edhicks-new-glc",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/glc",
+      "status": "verified",
+      "expectedCount": 31,
+      "retailCount": 31,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:19:39.347Z"
+    },
+    {
+      "id": "mb-edhicks-new-gle",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/gle",
+      "status": "verified",
+      "expectedCount": 27,
+      "retailCount": 27,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:19:33.592Z"
+    },
+    {
+      "id": "mb-edhicks-new-gls",
+      "url": "https://www.edhicksimports.com/inventory/new/mercedes-benz/gls",
+      "status": "verified",
+      "expectedCount": 11,
+      "retailCount": 11,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:38.894Z"
+    },
+    {
+      "id": "mb-edhicks-used",
+      "url": "https://www.edhicksimports.com/inventory/used",
+      "status": "verified",
+      "expectedCount": 153,
+      "retailCount": 153,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:21:26.025Z"
+    },
+    {
+      "id": "baldwin-subaru-used",
+      "url": "https://www.baldwinmotors.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 61,
+      "retailCount": 61,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:17:01.277Z"
+    },
+    {
+      "id": "bryan-honda-used",
+      "url": "https://www.bryanhondafayetteville.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 165,
+      "retailCount": 165,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:19:54.209Z"
+    },
+    {
+      "id": "camelback-toyota-used",
+      "url": "https://www.camelbacktoyota.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 282,
+      "retailCount": 282,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:20:51.346Z"
+    },
+    {
+      "id": "ciocca-bmw-used",
+      "url": "https://www.cioccaautomotive.com/inventory/used/bmw.htm",
+      "status": "verified",
+      "expectedCount": 50,
+      "retailCount": 50,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:18:54.002Z"
+    },
+    {
+      "id": "ciocca-subaru-used",
+      "url": "https://www.cioccaautomotive.com/inventory/used/subaru.htm",
+      "status": "verified",
+      "expectedCount": 229,
+      "retailCount": 229,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:18:38.756Z"
+    },
+    {
+      "id": "kings-group-budget-used",
+      "url": "https://www.northgatefordcincinnati.com/bargain-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 117,
+      "retailCount": 117,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:21:21.719Z"
+    },
+    {
+      "id": "millersubaru-used",
+      "url": "https://www.millersubaru.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 135,
+      "retailCount": 135,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:25:20.251Z"
+    },
+    {
+      "id": "principle-bmw-corpus-used",
+      "url": "https://www.bmwofcc.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 61,
+      "retailCount": 61,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:19:11.984Z"
+    },
+    {
+      "id": "principlevolvocarssanantonio",
+      "url": "https://www.principlevolvocarssanantonio.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 126,
+      "retailCount": 126,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:26:22.343Z"
+    },
+    {
+      "id": "principlevolvocarssanantonio-new",
+      "url": "https://www.principlevolvocarssanantonio.com/new-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 261,
+      "retailCount": 261,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:24:26.467Z"
+    },
+    {
+      "id": "ridings-group-used",
+      "url": "https://www.rickridings.com/used-inventory/index.htm",
+      "status": "preserved_previous",
+      "error": "source_not_complete"
+    },
+    {
+      "id": "scottvolvocarsallentown-used",
+      "url": "https://www.scottvolvocarsallentown.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 292,
+      "retailCount": 292,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:27:37.103Z"
+    },
+    {
+      "id": "volvoaustin-used",
+      "url": "https://www.volvoaustin.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 103,
+      "retailCount": 103,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:25:54.650Z"
+    },
+    {
+      "id": "volvocarsseattle-used",
+      "url": "https://www.volvocarsseattle.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 738,
+      "retailCount": 738,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:23:16.242Z"
+    },
+    {
+      "id": "volvocarstampa-used",
+      "url": "https://www.volvocarstampa.com/used-inventory/index.htm",
+      "status": "verified",
+      "expectedCount": 52,
+      "retailCount": 52,
+      "wholesaleExcluded": 0,
+      "observedAt": "2026-10-22T13:21:44.980Z"
+    }
+  ],
+  "limitations": [
+    "This static bootstrap is the verified original four selected sources and expanded sample. The current public collector and browser-imported aggregate are stored in D1.",
+    "Selected public dealer asking-price samples only; not complete nationwide coverage.",
+    "Every listing retains its actual observation time and fee/incentive basis."
+  ]
+}

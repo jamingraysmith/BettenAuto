@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1792504937459,
+      "tag": "0000_melted_joystick",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793051666469,
+      "tag": "0001_complex_power_pack",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793052107185,
+      "tag": "0002_busy_marvel_apes",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1793053082545,
+      "tag": "0003_warm_puck",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1793053759529,
+      "tag": "0004_eager_living_tribunal",
+      "breakpoints": true
+    }
+  ]
+}
