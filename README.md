@@ -21,11 +21,13 @@ Market comparisons load on vehicle open within the configured free/evaluation al
 
 ## Verification
 
-At the last published feature release, 271 tests, type checking and production builds passed. See each app's documentation and tests for relevant checks. A fresh installation and environment configuration are required on a new machine.
+At the last published feature release, 277 tests, type checking and production builds passed. See each app's documentation and tests for relevant checks. A fresh installation and environment configuration are required on a new machine.
 
 ## Source provenance
 
-- Hub source commit: `281077eda5ab0bb54e369af8577056fba341df5d`
-- BettenAuto source commit: `9fcd5c8236e10c0af7cf4975083f420da348020d`
+- Hub source commit: `997ef669b72706d45296a1eab476745ade3deb2b`
+- BettenAuto source commit: `ee12176b14820586778b3f7d4065d1ae6054f5a0`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
+
+BettenAuto now opens natively within the Hub center panel, retaining Hub navigation and messaging. Its employee-bound server connection uses the original inventory database and route permissions. External vendor applications continue opening separately.
