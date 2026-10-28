@@ -21,14 +21,13 @@ Market comparisons load on vehicle open within the configured free/evaluation al
 
 ## Verification
 
-At the last published feature release, 279 tests, type checking and production builds passed. See each app's documentation and tests for relevant checks. A fresh installation and environment configuration are required on a new machine.
+At the last published feature release, 280 tests, type checking and production builds passed. See each app's documentation and tests for relevant checks. A fresh installation and environment configuration are required on a new machine.
 
 ## Source provenance
 
-- Hub source commit: `0adbcc15da4e6969185da852f7d8df1b2f0a4a9f`
+- Hub source commit: `c38bb3b5679f32a530618f0903632ee87083c739`
 - BettenAuto source commit: `ee12176b14820586778b3f7d4065d1ae6054f5a0`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 
-BettenAuto now opens natively within the Hub center panel, retaining Hub navigation and messaging. Its employee-bound server connection uses the original inventory database and route permissions. vAuto also opens inside Hub after a normal Cox sign-in; other vendor applications continue opening separately after compatibility testing.
-
+BettenAuto now opens natively within the Hub center panel, retaining Hub navigation and messaging. Its employee-bound server connection uses the original inventory database and route permissions. KeyTrack opens inside Hub under its owner-approved frame policy. vAuto also opens inside Hub after a normal Cox sign-in; VinSolutions and Dealer.com continue opening separately after compatibility testing.
