@@ -1,0 +1,8 @@
+'use client';
+import {useState} from 'react';
+import {ArrowUpRight,RefreshCw} from 'lucide-react';
+import {embeddedApplication} from '../lib/external-apps';
+export default function ExternalWorkspace({app}:{app:{id:string;name:string;url:string}}){
+ const [reload,setReload]=useState(0),[loading,setLoading]=useState(true);const config=embeddedApplication(app);if(!config)return null;
+ return <section className="native-workspace external-workspace" aria-label={app.name+' workspace'}><div className="native-workspace-toolbar"><strong>{app.name}</strong><span>Your dealership application</span><a className="button" href={config.signInUrl} target="_blank" rel="noopener noreferrer">Sign in separately<ArrowUpRight size={14}/></a><button className="button" onClick={()=>{setLoading(true);setReload(r=>r+1)}}><RefreshCw size={14}/>Reload {app.name}</button><a href={config.frameUrl} target="_blank" rel="noopener noreferrer">Open separately<ArrowUpRight size={14}/></a></div><div className="external-app-help">If {app.name} is blank or asks you to sign in, choose <b>Sign in separately</b>, finish signing in, then return here and choose <b>Reload {app.name}</b>. Your Hub navigation and messages stay available.</div>{loading&&<p className="native-workspace-status" role="status">Opening {app.name}…</p>}<iframe key={reload} src={config.frameUrl} title={app.name+' dealership application'} sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads allow-modals" referrerPolicy="strict-origin-when-cross-origin" onLoad={()=>setLoading(false)} onError={()=>setLoading(false)}/></section>
+}

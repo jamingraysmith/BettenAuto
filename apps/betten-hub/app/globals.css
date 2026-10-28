@@ -27,3 +27,5 @@
 .native-workspace iframe{display:block;border:0;width:100%;flex:1;min-height:420px;background:#fff}
 .native-workspace-status{padding:8px 16px;color:#667085;background:#f1f5fb;font-size:12px}
 @media(max-width:700px){.native-workspace-toolbar{gap:8px}.native-workspace-toolbar>span{display:none}.native-workspace-toolbar>.button{margin-left:auto}.native-workspace{height:calc(100dvh - 64px)}}
+.external-app-help{padding:10px 16px;background:#edf4fc;border-bottom:1px solid #c9d9ed;color:#28476b;font-size:12px;line-height:1.6;flex-shrink:0}
+.external-workspace iframe{min-height:480px}
