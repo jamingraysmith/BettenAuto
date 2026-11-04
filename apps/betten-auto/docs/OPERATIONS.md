@@ -68,6 +68,13 @@ Age-based stock dates: Excel Age is now converted to acquiredDate only with a va
 
 ## KeyTrack source history
 
-An owner-only KeyTrack archive is shown in Keys & Operations and Data & connections. Its `settings` records are excluded by `projectRecord` from every non-owner response. The same component is used in Betten Hub, which reads the existing signed workspace bridge. Business snapshots, sales/customer information, contact data and operational captures belong only in private runtime storage and ignored local verification folders, never public GitHub source.
+An owner-only KeyTrack archive is available on the separate KeyTrack records page in Betten Hub. Its `settings` records are excluded by `projectRecord` from every non-owner response. The same component is used in Betten Hub, which reads the existing signed workspace bridge. Business snapshots, sales/customer information, contact data and operational captures belong only in private runtime storage and ignored local verification folders, never public GitHub source.
 
 The Used Cars migration is additive: valid unique VINs identify each vehicle, missing identities use the existing partial inventory import, and blank operating fields are filled through revision-checked record saves. Existing nonblank values (including zero and false) are preserved. A conflicts category retains differing source values for owner review. Historical sales with no VIN, original displayed key-event dates and repair-order listings remain separate history; none creates a guessed sale, customer relationship, recon expense or original timestamp. Repair PDF and vehicle photo files are not included. Staff source labels do not grant access. This is a one-time snapshot, not an unattended KeyTrack connection. The normal complete website snapshot can archive source-only vehicles while retaining their records.
+
+
+## Key Board refresh
+
+Keys & Operations now opens on a two-column Keys In / Keys Out board with a quick VIN/stock scanner, purpose presets and short confirmation dialogs. Checkout requires an exact unique active VIN or stock number and a key confirmed In; partial matches, ambiguous stocks, sold vehicles, already checked-out, lost and unknown keys are rejected. Check-in explicitly confirms physical return. Lost and unrecorded keys remain in Needs attention. Existing revision-checked saves and key permissions remain authoritative; financial and other unrelated fields are preserved. Operations overview, detailed management and Sales remain available.
+
+The large KeyTrack source-history table was removed from the bottom of BettenAuto. Imported history remains stored and available on the separate owner-only KeyTrack records page in Hub. No records are deleted.

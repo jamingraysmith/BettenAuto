@@ -25,8 +25,8 @@ At the last published feature release, 286 tests, type checking and production b
 
 ## Source provenance
 
-- Hub source commit: `b5c0255b2c295a8ab40cd9cc5a7020739c543c34`
-- BettenAuto source commit: `6ac016c68ac37a69ea316a966c0ca8802d50077e`
+- Hub source commit: `ba2081b5c5e4d7f1a445f8ee238a2208818d048a`
+- BettenAuto source commit: `d355028bd8076d85455cfcee69b192d932a4fd0e`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 
@@ -37,3 +37,5 @@ Daily work release (November 4, 2026): Today, department work queues, vehicle re
 Hub release 13 fixes sidebar overflow on shorter windows and adds owner-only vAuto Excel cost/stock-date import review directly to Inventory connection. This remains a report snapshot; no automated vAuto session access or provider feed is implied.
 
 Hub release 14 / BettenAuto release 29 add an owner-only, searchable KeyTrack Used Cars source-history view. Existing server projection keeps these settings records out of non-owner responses. History stays separate from current vehicle status; migration fills blanks and preserves entered records. Private migration snapshots and financial/customer data are excluded from this repository. Repair PDF and vehicle photo files require a separate export. Type checks, production builds, 11 authorization/bridge tests, local search/pagination and production import readback passed.
+
+Hub release 15 / BettenAuto release 30 refresh Keys & Operations with a familiar Keys In / Keys Out board, quick exact VIN/stock lookup, purpose presets and short checkout/return confirmations. Lost and unrecorded keys remain distinct. The large source-history table was removed from the bottom of BettenAuto; private history remains on its separate owner-only Hub page. Validation: 15 scanner/authorization/bridge tests, both type checks and production builds, local checkout/return/cancel tests with unchanged costs, desktop/mobile layouts, and live board verification.

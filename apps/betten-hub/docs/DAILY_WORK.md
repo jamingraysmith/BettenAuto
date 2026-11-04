@@ -14,8 +14,15 @@ Validation: backend permission, revision, assignment, source-message boundaries,
 
 ## KeyTrack used-car migration
 
-KeyTrack records is an owner-only Hub view, also available under Keys & Operations and Data & connections inside BettenAuto. It reads the same Inventory Desk settings records through the existing authenticated workspace bridge. Server projection excludes all settings records for non-owners, even when they have Connections access. Source snapshots contain business and customer information and must never be committed to the public source repository.
+KeyTrack records is a separate owner-only Hub view. BettenAuto’s daily key and connection screens omit the source-history table. It reads the same Inventory Desk settings records through the existing authenticated workspace bridge. Server projection excludes all settings records for non-owners, even when they have Connections access. Source snapshots contain business and customer information and must never be committed to the public source repository.
 
 The one-time Used Cars migration verifies unique VINs against visible vehicle forms and source rows, adds missing vehicle identities as a partial own-inventory import, and fills only blank operating fields. Existing values, including financials, dispositions and false/zero values, remain unchanged. Conflicting values are retained in a separate owner-only review category. A partial migration does not replace the complete website snapshot or promise ongoing KeyTrack synchronization. Future complete website captures can archive KeyTrack-only vehicles without deleting their records.
 
 Historical sales without VINs remain a separate searchable source table; they do not create guessed vehicle/customer links. Historical key events preserve original displayed dates without inferring years or timezones. Repair-order listings retain source numbers, dates and displayed amounts; original PDF documents and vehicle photo files require a separate file export. Imported staff labels do not create accounts or grant permissions. The signed-in source messaging view showed no messages; no messages were fabricated or sent.
+
+
+## Key Board refresh
+
+Keys & Operations now opens on a two-column Keys In / Keys Out board with a quick VIN/stock scanner, purpose presets and short confirmation dialogs. Checkout requires an exact unique active VIN or stock number and a key confirmed In; partial matches, ambiguous stocks, sold vehicles, already checked-out, lost and unknown keys are rejected. Check-in explicitly confirms physical return. Lost and unrecorded keys remain in Needs attention. Existing revision-checked saves and key permissions remain authoritative; financial and other unrelated fields are preserved. Operations overview, detailed management and Sales remain available.
+
+The large KeyTrack source-history table was removed from the bottom of BettenAuto. Imported history remains stored and available on the separate owner-only KeyTrack records page in Hub. No records are deleted.
