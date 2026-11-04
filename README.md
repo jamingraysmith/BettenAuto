@@ -25,7 +25,7 @@ At the last published feature release, 286 tests, type checking and production b
 
 ## Source provenance
 
-- Hub source commit: `50d73cfec939b97dc4e33008c02a8abc9d9ef4f2`
+- Hub source commit: `bc1ad0f5cf79a1a8873b781cdf7b6cc49cb9b443`
 - BettenAuto source commit: `a514d7f8ae03b3d600b2ca5afa902a2a109cb1ba`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
@@ -33,3 +33,5 @@ The original deployment histories are intentionally excluded from this clean sna
 BettenAuto now opens natively within the Hub center panel, retaining Hub navigation and messaging. Its employee-bound server connection uses the original inventory database and route permissions. KeyTrack opens inside Hub under its owner-approved frame policy. vAuto also opens inside Hub after a normal Cox sign-in; VinSolutions and Dealer.com continue opening separately after compatibility testing.
 
 Daily work release (November 4, 2026): Today, department work queues, vehicle readiness, message-to-task actions, separate Service/Detail and Administrator presets, operational reports, and provider-feed setup guidance. Work data remains in the existing Inventory Desk D1 database with employee-bound authorization and optimistic revisions. No provider feed or paid service is activated. See apps/betten-hub/docs/DAILY_WORK.md.
+
+Hub release 13 fixes sidebar overflow on shorter windows and adds owner-only vAuto Excel cost/stock-date import review directly to Inventory connection. This remains a report snapshot; no automated vAuto session access or provider feed is implied.
