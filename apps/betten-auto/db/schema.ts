@@ -13,3 +13,4 @@ export const hubCustomers=sqliteTable('hub_customers',{id:text('id').primaryKey(
 export const hubInfo=sqliteTable('hub_info',{id:text('id').primaryKey(),data:text('data').notNull(),revision:integer('revision').notNull().default(1),updatedAt:text('updated_at').notNull()});
 export const hubBridgeNonces=sqliteTable('hub_bridge_nonces',{id:text('id').primaryKey(),createdAt:integer('created_at').notNull()});
 export const hubIdentityAliases=sqliteTable('hub_identity_aliases',{alias:text('alias').primaryKey(),canonical:text('canonical').notNull()});
+export const hubWork=sqliteTable('hub_work',{id:text('id').primaryKey(),kind:text('kind').notNull(),data:text('data').notNull(),revision:integer('revision').notNull().default(1),updatedAt:text('updated_at').notNull(),actor:text('actor').notNull()});
