@@ -25,8 +25,8 @@ At the last published feature release, 286 tests, type checking and production b
 
 ## Source provenance
 
-- Hub source commit: `bc1ad0f5cf79a1a8873b781cdf7b6cc49cb9b443`
-- BettenAuto source commit: `a514d7f8ae03b3d600b2ca5afa902a2a109cb1ba`
+- Hub source commit: `b5c0255b2c295a8ab40cd9cc5a7020739c543c34`
+- BettenAuto source commit: `6ac016c68ac37a69ea316a966c0ca8802d50077e`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 
@@ -35,3 +35,5 @@ BettenAuto now opens natively within the Hub center panel, retaining Hub navigat
 Daily work release (November 4, 2026): Today, department work queues, vehicle readiness, message-to-task actions, separate Service/Detail and Administrator presets, operational reports, and provider-feed setup guidance. Work data remains in the existing Inventory Desk D1 database with employee-bound authorization and optimistic revisions. No provider feed or paid service is activated. See apps/betten-hub/docs/DAILY_WORK.md.
 
 Hub release 13 fixes sidebar overflow on shorter windows and adds owner-only vAuto Excel cost/stock-date import review directly to Inventory connection. This remains a report snapshot; no automated vAuto session access or provider feed is implied.
+
+Hub release 14 / BettenAuto release 29 add an owner-only, searchable KeyTrack Used Cars source-history view. Existing server projection keeps these settings records out of non-owner responses. History stays separate from current vehicle status; migration fills blanks and preserves entered records. Private migration snapshots and financial/customer data are excluded from this repository. Repair PDF and vehicle photo files require a separate export. Type checks, production builds, 11 authorization/bridge tests, local search/pagination and production import readback passed.

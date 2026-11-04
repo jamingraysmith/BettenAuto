@@ -1,0 +1,4 @@
+'use client';
+import {useEffect,useState} from 'react';
+import KeyTrackArchive from '../features/betten-auto/app/keytrack-archive';
+export default function KeyTrackRecords(){const [records,setRecords]=useState<any[]>([]),[owner,setOwner]=useState(false),[error,setError]=useState(''),[loading,setLoading]=useState(true);useEffect(()=>{let active=true;fetch('/api/bettenauto/workspace',{cache:'no-store'}).then(async r=>{const j:any=await r.json();if(!r.ok)throw Error(j.error||'Could not load imported records.');if(!j.access?.owner)throw Error('This history is restricted to the dealership owner.');if(active){setOwner(true);setRecords(j.records)}}).catch(e=>{if(active)setError(e.message)}).finally(()=>{if(active)setLoading(false)});return()=>{active=false}},[]);return <>{loading&&<p>Loading imported records…</p>}{error&&<p role="alert" className="notice error">{error}</p>}{owner&&<KeyTrackArchive owner={owner} records={records}/>}</>}
