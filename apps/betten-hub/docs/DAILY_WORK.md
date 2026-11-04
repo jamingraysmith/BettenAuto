@@ -26,3 +26,10 @@ Historical sales without VINs remain a separate searchable source table; they do
 Keys & Operations now opens on a two-column Keys In / Keys Out board with a quick VIN/stock scanner, purpose presets and short confirmation dialogs. Checkout requires an exact unique active VIN or stock number and a key confirmed In; partial matches, ambiguous stocks, sold vehicles, already checked-out, lost and unknown keys are rejected. Check-in explicitly confirms physical return. Lost and unrecorded keys remain in Needs attention. Existing revision-checked saves and key permissions remain authoritative; financial and other unrelated fields are preserved. Operations overview, detailed management and Sales remain available.
 
 The large KeyTrack source-history table was removed from the bottom of BettenAuto. Imported history remains stored and available on the separate owner-only KeyTrack records page in Hub. No records are deleted.
+
+
+## Current separation: KeyTrack remains external
+
+Key Board, key checkout/return, tracker dashboards and the KeyTrack source-history screens have been removed from BettenAuto and Hub. Hub starts on Applications with messages, staff, customers and information. KeyTrack is an external website shortcut only; framing it is disabled. Tracker-style work queues/readiness/report screens and message-to-task actions are no longer exposed. Vehicle details omit the tracker lot-location field. Existing database and historical source records are retained without modification for a possible future merge. No ongoing KeyTrack sync is enabled, and no data is written to KeyTrack.
+
+The retired tracker/workflow API is also removed from the Hub gateway. Legacy database tables and stored permission grants remain intact; no destructive schema migration or record deletion is performed. Inventory rows omit repeated helper labels and the empty market placeholder column; live market pricing remains in vehicle details.

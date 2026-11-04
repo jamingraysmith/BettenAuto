@@ -21,21 +21,15 @@ Market comparisons load on vehicle open within the configured free/evaluation al
 
 ## Verification
 
-At the last published feature release, 286 tests, type checking and production builds passed. See each app's documentation and tests for relevant checks. A fresh installation and environment configuration are required on a new machine.
+The current separation release passed 17 permission, bridge and external-application tests, both type checks and production builds. Local browser checks confirmed the clean launcher, inventory-first workspace, absent tracker navigation and external-only KeyTrack link.
 
 ## Source provenance
 
-- Hub source commit: `ba2081b5c5e4d7f1a445f8ee238a2208818d048a`
-- BettenAuto source commit: `d355028bd8076d85455cfcee69b192d932a4fd0e`
+- Hub source commit: `918245966d0df4cf358190cb6db18cb02da5decc`
+- BettenAuto source commit: `d3445a233ca022e1fab7f5ff526be30b49938e2d`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 
-BettenAuto now opens natively within the Hub center panel, retaining Hub navigation and messaging. Its employee-bound server connection uses the original inventory database and route permissions. KeyTrack opens inside Hub under its owner-approved frame policy. vAuto also opens inside Hub after a normal Cox sign-in; VinSolutions and Dealer.com continue opening separately after compatibility testing.
+BettenAuto opens natively inside Hub with the existing employee-bound inventory connection. Hub release 16 / BettenAuto release 31 remove the Key Board, checkout/return, tracker dashboards, imported KeyTrack history screens, work queues, readiness screens and their retired workflow API. KeyTrack is an external website shortcut only and is not embedded. VinSolutions and Dealer.com remain external; vAuto keeps its tested embedded flow.
 
-Daily work release (November 4, 2026): Today, department work queues, vehicle readiness, message-to-task actions, separate Service/Detail and Administrator presets, operational reports, and provider-feed setup guidance. Work data remains in the existing Inventory Desk D1 database with employee-bound authorization and optimistic revisions. No provider feed or paid service is activated. See apps/betten-hub/docs/DAILY_WORK.md.
-
-Hub release 13 fixes sidebar overflow on shorter windows and adds owner-only vAuto Excel cost/stock-date import review directly to Inventory connection. This remains a report snapshot; no automated vAuto session access or provider feed is implied.
-
-Hub release 14 / BettenAuto release 29 add an owner-only, searchable KeyTrack Used Cars source-history view. Existing server projection keeps these settings records out of non-owner responses. History stays separate from current vehicle status; migration fills blanks and preserves entered records. Private migration snapshots and financial/customer data are excluded from this repository. Repair PDF and vehicle photo files require a separate export. Type checks, production builds, 11 authorization/bridge tests, local search/pagination and production import readback passed.
-
-Hub release 15 / BettenAuto release 30 refresh Keys & Operations with a familiar Keys In / Keys Out board, quick exact VIN/stock lookup, purpose presets and short checkout/return confirmations. Lost and unrecorded keys remain distinct. The large source-history table was removed from the bottom of BettenAuto; private history remains on its separate owner-only Hub page. Validation: 15 scanner/authorization/bridge tests, both type checks and production builds, local checkout/return/cancel tests with unchanged costs, desktop/mobile layouts, and live board verification.
+Hub starts on a clean Applications page with messages, staff directory, customers and information. BettenAuto starts on Inventory, with fewer repeated row labels and no empty market placeholder column; pricing and comparisons remain inside the vehicle. Existing dealership database records and historical imports are retained unchanged for a possible future merge. No destructive schema migration, KeyTrack synchronization or paid provider activation is performed.
