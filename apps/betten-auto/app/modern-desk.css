@@ -1,0 +1,109 @@
+/* BettenAuto workspace */
+:root {
+  --ink:#17263a; --muted:#526277; --green:#164daf; --green-soft:#edf4ff;
+  --line:#dbe3ee; --canvas:#f4f7fb; --radius:14px;
+  --desk-blue:#174faf; --desk-navy:#142740; --desk-muted:#526277;
+  --desk-surface:#fff; --desk-outline:#dce5f0;
+}
+body { font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--canvas); }
+.modern-desk { min-height:100vh; background:var(--canvas); color:var(--ink); }
+.app-shell.modern-desk .sidebar { background:var(--desk-navy); color:#fff; border:0; }
+.modern-desk .brand { gap:12px; border-bottom:1px solid #ffffff16; }
+.modern-desk .brand-mark { display:grid; place-content:center; grid-auto-flow:column; background:#f69751; color:#16253c; border-radius:12px; padding:0; }
+.modern-desk .brand-mark span { color:inherit; }
+.modern-desk .brand strong,.modern-desk .location-switch strong,.modern-desk .user strong { color:#fff; }
+.modern-desk .brand>div>span,.modern-desk .location-switch div>span,.modern-desk .user div>span,.modern-desk .nav-heading { color:#b9cbe2; }
+.app-shell.modern-desk .location-switch,.app-shell.modern-desk .user { background:#ffffff0b; border:0; }
+.modern-desk .sidebar .nav-item { border-radius:9px; color:#cfdbec; }
+.modern-desk .sidebar .nav-item svg,.modern-desk .sidebar .icon-button { color:#b9cbe2; }
+.modern-desk .sidebar .nav-item:hover,.modern-desk .sidebar .nav-item.active { background:#294766; color:#fff; }
+.modern-desk .sidebar .nav-item.active svg { color:#fff; }
+.modern-desk .sidebar .nav-item em { color:#e3eeff; background:#ffffff1a; border:0; }
+.app-shell.modern-desk .topbar { min-height:54px; border-color:var(--desk-outline); }
+.app-shell.modern-desk .breadcrumbs,.app-shell.modern-desk .sync-label { font-size:12px; }
+.app-shell.modern-desk main { max-width:1700px; padding-top:30px; }
+.desk-kicker { color:#526982; font-size:11px; font-weight:750; letter-spacing:.13em; }
+.app-shell.modern-desk .page-heading { align-items:end; gap:16px; margin-bottom:24px; }
+.app-shell.modern-desk .page-heading h1 { font-size:clamp(30px,3vw,44px); line-height:1.07; letter-spacing:-.045em; color:var(--ink); margin:5px 0 6px; }
+.app-shell.modern-desk .page-heading p { font-size:14px; color:var(--desk-muted); }
+.app-shell.modern-desk :is(.card,.stat,.workspace-panel,.appraisal-card) { border:1px solid var(--desk-outline); border-radius:var(--radius); box-shadow:0 2px 5px #14274008; background:var(--desk-surface); }
+.app-shell.modern-desk .button { min-height:37px; border-radius:8px; padding:8px 13px; border-color:#bdcee1; color:#244568; font-size:13px; font-weight:650; }
+.app-shell.modern-desk .button.primary { background:var(--desk-blue); color:#fff; border-color:var(--desk-blue); }
+.app-shell.modern-desk .button.primary:hover { background:#113c89; }
+.app-shell.modern-desk .inventory-side-header { padding:19px 22px 12px; gap:14px; align-items:center; border:0; background:white; border-radius:var(--radius) var(--radius) 0 0; }
+.app-shell.modern-desk .inventory-side-header h2 { font-size:20px; color:var(--ink); }
+.app-shell.modern-desk .inventory-side-header p { color:var(--desk-muted); font-size:13px; margin-top:3px; }
+.app-shell.modern-desk .inventory-side-switch { background:#edf2f9; padding:4px; border:0; border-radius:10px; gap:2px; }
+.app-shell.modern-desk .inventory-side-switch button { min-height:34px; background:transparent; color:#415875; border:0; border-radius:7px; font-size:13px; }
+.app-shell.modern-desk .inventory-side-switch button.selected { background:#fff; color:#174faf; box-shadow:0 1px 4px #15274120; }
+.app-shell.modern-desk .inventory-side-switch b { color:inherit; }
+.app-shell.modern-desk .table-toolbar { padding:12px 22px 16px; background:#fff; border:0; gap:10px; }
+.app-shell.modern-desk :is(.search-box,.select-wrap) { min-height:40px; border-radius:9px; border:1px solid #cdd9e8; background:#fff; color:#435972; }
+.app-shell.modern-desk :is(.search-box input,.select-wrap select) { font-size:13px; color:var(--ink); }
+.app-shell.modern-desk .search-box { width:clamp(190px,27vw,375px); }
+.app-shell.modern-desk .desk-table { min-width:680px; font-size:13px; }
+.app-shell.modern-desk .desk-table th { background:#edf3fa; color:#455873; border-block:1px solid #e2e9f1; padding:12px 14px; font-size:11px; white-space:nowrap; }
+.app-shell.modern-desk .desk-table td { color:#24364e; padding:12px 14px; border-bottom:1px solid #e8eef5; vertical-align:middle; }
+.app-shell.modern-desk .desk-table :is(td,th):first-child { padding-left:22px; }
+.app-shell.modern-desk .desk-table tr:hover td,.app-shell.modern-desk .desk-table tr:focus-within td { background:#f2f7ff; }
+.app-shell.modern-desk .desk-table .vehicle-cell { min-width:210px; gap:12px; }
+.app-shell.modern-desk .desk-table .vehicle-thumb { width:67px; height:47px; object-fit:cover; border-radius:8px; background:#eef3fa; flex:none; }
+.app-shell.modern-desk .inventory-vehicle-name { color:#183d77; font-size:14px; font-weight:720; text-align:left; padding:0; }
+.app-shell.modern-desk .inventory-vehicle-name:hover { text-decoration:underline; }
+.app-shell.modern-desk .desk-table .desk-vehicle-meta,.app-shell.modern-desk .desk-table .desk-vehicle-vin { display:block; font-size:11px; color:#526582; line-height:1.5; }
+.app-shell.modern-desk .desk-vehicle-vin { font-variant-numeric:tabular-nums; letter-spacing:.03em; }
+.app-shell.modern-desk .desk-table .desk-price { font-size:15px; font-weight:750; color:#173253; white-space:nowrap; }
+.app-shell.modern-desk .desk-table .cell-sub { color:#526582; }
+.app-shell.modern-desk .table-footer { border-radius:0 0 var(--radius) var(--radius); background:white; padding:14px 22px; color:#465b73; }
+.app-shell.modern-desk .pagination button { border-radius:8px; }
+.modern-desk .vehicle-overlay { background:#13264080; backdrop-filter:blur(3px); }
+.app-shell.modern-desk .desk-vehicle-drawer { width:min(1100px,calc(100vw - 48px)); height:min(88vh,920px); border-radius:18px; box-shadow:0 24px 70px #0a1e4f47; overflow:hidden; background:#fff; }
+.app-shell.modern-desk .desk-vehicle-drawer .drawer-heading { padding:22px 26px 16px; align-items:start; border-bottom:0; }
+.app-shell.modern-desk .desk-vehicle-drawer .drawer-heading h2 { color:var(--ink); font-size:clamp(20px,2.5vw,29px); font-weight:750; letter-spacing:-.032em; margin:4px 0 7px; }
+.desk-drawer-facts { display:flex; gap:8px 13px; flex-wrap:wrap; color:#4b607a; font-size:12px; }
+.desk-drawer-facts span+span { padding-left:13px; border-left:1px solid #d7e0ed; }
+.app-shell.modern-desk .desk-drawer-tabs { background:#fff; border-color:var(--desk-outline); padding:0 20px; gap:5px; align-items:center; overflow-x:auto; }
+.app-shell.modern-desk .desk-drawer-tabs button { min-height:45px; padding:9px 12px; font-size:13px; color:#526582; white-space:nowrap; }
+.app-shell.modern-desk .desk-drawer-tabs button.selected { color:#174faf; border-bottom-color:#174faf; }
+.desk-extra-tools { margin-left:auto; padding:5px 0; flex:none; }
+.desk-extra-tools select { color:#294e7c; border:1px solid #cbd8e9; background:#fff; border-radius:8px; padding:6px 9px; max-width:140px; font-size:12px; }
+.app-shell.modern-desk .desk-vehicle-drawer .drawer-content { padding:20px 25px; background:#f8fafd; }
+.app-shell.modern-desk .desk-vehicle-drawer .drawer-footer { padding:11px 24px; border-color:var(--desk-outline); }
+.desk-section-intro h3 { margin:3px 0; font-size:25px; color:var(--ink); letter-spacing:-.03em; }
+.desk-section-intro p,.document-note,.document-action p { color:#526582; font-size:13px; margin:3px 0; }
+.document-picker { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:16px 0; }
+.document-picker button { display:flex; flex-direction:column; align-items:start; gap:7px; padding:15px; text-align:left; background:#fff; color:#1c3758; border:1px solid #d6e1ee; border-radius:12px; }
+.document-picker button[aria-pressed=true] { background:#eef5ff; border-color:#4b79c3; }
+.document-picker strong { font-size:15px; }
+.document-picker small { color:#536881; line-height:1.45; font-size:12px; }
+.document-icon { display:grid; place-items:center; width:35px; height:35px; background:#e7effc; color:#174faf; border-radius:9px; }
+.document-action:not([hidden]) { display:flex; justify-content:space-between; align-items:start; gap:18px; padding:18px; background:#fff; border:1px solid #d6e1ee; border-radius:12px; }
+.document-action h4 { margin:0; font-size:16px; color:#203a5c; }
+.document-action .field { max-width:480px; margin-top:12px; }
+.document-action .button { flex:none; }
+.desk-documents .table-link { display:inline-flex; align-items:center; gap:4px; }
+.app-shell.modern-desk :is(.workspace-panel,.provider-result) :is(input,select,textarea) { border-radius:8px; }
+@media(max-width:900px) {
+ .app-shell.modern-desk .page-heading { align-items:start; }
+ .app-shell.modern-desk .table-toolbar { flex-wrap:wrap; }
+ .app-shell.modern-desk .table-toolbar .filters { flex-wrap:wrap; }
+}
+@media(max-width:650px) {
+ .app-shell.modern-desk main { padding-inline:13px; }
+ .app-shell.modern-desk .page-heading { flex-direction:column; }
+ .app-shell.modern-desk .heading-actions { flex-wrap:wrap; }
+ .app-shell.modern-desk .desk-vehicle-drawer { width:100%; height:100dvh; border-radius:0; }
+ .app-shell.modern-desk .desk-vehicle-drawer .drawer-heading,.app-shell.modern-desk .desk-vehicle-drawer .drawer-content { padding:15px; }
+ .app-shell.modern-desk .desk-drawer-tabs { padding-inline:7px; }
+ .document-picker { grid-template-columns:1fr; gap:7px; }
+ .document-picker button { padding:10px 12px; display:grid; grid-template-columns:36px 1fr; gap:2px 9px; }
+ .document-picker .document-icon { grid-row:span 2; }
+ .document-action:not([hidden]) { flex-direction:column; gap:12px; }
+}
+@media print { .modern-desk .desk-vehicle-drawer { display:none!important; } }
+/* The embedded navigation has its own active state in the legacy workspace sheet. */
+.bettenauto-surface .app-shell.modern-desk .sidebar .nav-item.active { background:#294766; color:#fff; box-shadow:inset 0 -2px #80b5ff; }
+@media(max-width:650px) {
+ .app-shell.modern-desk .desk-vehicle-drawer .drawer-footer { padding-inline:13px; }
+ .app-shell.modern-desk .desk-drawer-tabs { scrollbar-width:thin; }
+}

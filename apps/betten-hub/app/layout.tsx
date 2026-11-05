@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./modern-hub.css";
 
 export const metadata: Metadata = {
   title: "Betten Hub · Betten Imports",

@@ -1,6 +1,6 @@
 import {getAccess} from '../../../../lib/access';
 import {can} from '../../../../lib/access-model';
-import {checkOrigin,db,json,workspace} from '../../../../lib/server';
+import {checkOrigin,db,inventoryVehicle,json} from '../../../../lib/server';
 import {marketConfiguration} from '../../../../lib/market-service';
 import {providerQuery,providerTools,validProviderVin,type ProviderTool} from '../../../../lib/vehicle-provider-tools';
 
@@ -12,7 +12,7 @@ async function reserveLookup(micros:number){
   const id='system:vehicle-research-budget:'+stamp.slice(0,7);
   const day='$.days.d'+stamp.slice(8,10);
   const initial=JSON.stringify({total:micros,days:{['d'+stamp.slice(8,10)]:micros}});
-  return db().prepare(`INSERT INTO records(id,kind,data,revision,updated_at,actor,mutation_id)
+  const result=await db().prepare(`INSERT INTO records(id,kind,data,revision,updated_at,actor,mutation_id)
     VALUES (?,'system',?,1,?,'vehicle research',?)
     ON CONFLICT(id) DO UPDATE SET
     data=json_set(records.data,'$.total',CAST(json_extract(records.data,'$.total') AS INTEGER)+?,
@@ -20,9 +20,9 @@ async function reserveLookup(micros:number){
     revision=records.revision+1,updated_at=excluded.updated_at,mutation_id=excluded.mutation_id
     WHERE records.kind='system'
       AND CAST(json_extract(records.data,'$.total') AS INTEGER)+?<=?
-      AND COALESCE(CAST(json_extract(records.data,?) AS INTEGER),0)+?<=?
-    RETURNING id`)
-    .bind(id,initial,stamp,crypto.randomUUID(),micros,day,day,micros,micros,monthlyMicros,day,micros,dailyMicros).first();
+      AND COALESCE(CAST(json_extract(records.data,?) AS INTEGER),0)+?<=?`)
+    .bind(id,initial,stamp,crypto.randomUUID(),micros,day,day,micros,micros,monthlyMicros,day,micros,dailyMicros).run();
+  return result.meta.changes===1;
 }
 
 function selectResult(tool:ProviderTool, data:any){
@@ -54,27 +54,51 @@ export async function POST(req:Request){
   if(!can(access,config.permission))return json({error:'Your account cannot use this vehicle tool.'},403);
   const vin=typeof input.vin==='string'?input.vin.trim().toUpperCase():'';
   if(!validProviderVin(vin))return json({error:'This tool requires a standard 17-character VIN.'},400);
+  const provider=marketConfiguration();
+  if(!provider.configured||provider.provider!=='autodev')return json({error:'Connect an Auto.dev account in Data & connections to use this lookup.'},503);
+  let vehicle;
+  try{vehicle=await inventoryVehicle(vin);}
+  catch(error){return unavailable(tool,'inventory',error,'The app could not read this vehicle’s saved inventory record.');}
+  if(!vehicle)return json({error:'This VIN is not in dealership inventory.'},404);
+  let query;
+  try{query=providerQuery(tool,input,vehicle.mileage);}
+  catch(error){return json({error:(error as Error).message},400);}
   try{
-    const provider=marketConfiguration();
-    if(!provider.configured||provider.provider!=='autodev')return json({error:'Vehicle data is not connected.'},503);
-    const w=await workspace();
-    const vehicle=w.vehicles.find(v=>v.vin===vin)||w.archivedVehicles.find(v=>v.vin===vin);
-    if(!vehicle)return json({error:'This VIN is not in dealership inventory.'},404);
-    let query;
-    try{query=providerQuery(tool,input,vehicle.mileage);}catch(error){return json({error:(error as Error).message},400);}
     if(!await reserveLookup(config.micros))return json({error:'The dealership’s vehicle research spending limit has been reached.'},429);
-    const url=new URL('https://api.auto.dev/'+tool+'/'+vin);
-    url.search=query.toString();
-    const response=await fetch(url,{headers:{Authorization:'Bearer '+provider.apiKey,Accept:'application/json'},redirect:'error',signal:AbortSignal.timeout(12000)});
-    if(response.status===401||response.status===402||response.status===403)return json({error:'The vehicle data account did not authorize this lookup. Check plan access and the connection.'},403);
-    if(response.status===429)return json({error:'The vehicle data account reached a request or usage limit. Try later.'},429);
-    if(response.status===404)return json({error:'No provider record is available for this VIN.'},404);
-    if(!response.ok)return json({error:'The vehicle data service could not complete this lookup.'},502);
-    const payload=await response.json() as any;
+  }catch(error){return unavailable(tool,'budget',error,'The app could not check the lookup allowance. No provider request was sent.');}
+
+  const url=new URL('https://api.auto.dev/'+tool+'/'+vin);
+  url.search=query.toString();
+  let response;
+  try{
+    response=await fetch(url,{headers:{Authorization:'Bearer '+provider.apiKey.trim(),Accept:'application/json'},redirect:'manual',signal:AbortSignal.timeout(15000)});
+  }catch(error){
+    const timedOut=error instanceof Error&&(error.name==='TimeoutError'||error.name==='AbortError');
+    return unavailable(tool,'connection',error,timedOut?'Auto.dev took too long to respond. Try again later.':'BettenAuto could not reach Auto.dev. Try again later.');
+  }
+  if(response.status===401||response.status===402||response.status===403)return json({error:'Auto.dev declined the lookup. Ask your administrator to verify the API key and that this account includes '+config.label.toLowerCase()+'.'},403);
+  if(response.status===429)return json({error:'Auto.dev reached a request or usage limit. Try again later.'},429);
+  if(response.status===404&&tool==='build')return json({result:null,partial:false,checkedAt:new Date().toISOString()});
+  if(response.status===404)return json({error:'Auto.dev has no matching record for this VIN.'},404);
+  if(!response.ok){
+    console.warn('Vehicle lookup HTTP status',{tool,status:response.status});
+    return json({error:response.status===400||response.status===422?'Auto.dev could not use this VIN or lookup criteria. Check the vehicle and try again.':'Auto.dev could not complete this lookup. Try again later.'},502);
+  }
+  try{
+    const raw=await response.text();
+    if(raw.length>4_000_000)throw Error('Response too large');
+    const payload=JSON.parse(raw);
+    if(!payload||typeof payload!=='object'||Array.isArray(payload))throw Error('Invalid response shape');
     const result=selectResult(tool,payload);
     const returnedVin=payload.build?.vin??payload.vehicle?.vin;
-    if(typeof returnedVin==='string'&&returnedVin.toUpperCase()!==vin)return json({error:'The provider returned details for a different VIN.'},502);
-    if(result==null&&response.status!==207)return json({error:'The vehicle data service returned an incomplete response.'},502);
-    return json({result:result??null,partial:response.status===207||Array.isArray(payload.missing)&&payload.missing.length>0,checkedAt:new Date().toISOString(),removedAt:tool==='photos'?payload.removedAt:undefined});
-  }catch{return json({error:'The vehicle data service is temporarily unavailable.'},502);}
+    if(typeof returnedVin==='string'&&returnedVin.toUpperCase()!==vin)return json({error:'Auto.dev returned details for a different VIN.'},502);
+    if(result==null&&response.status!==207)return json({error:'Auto.dev did not return usable details for this VIN.'},502);
+    return json({result:result??null,partial:!!result&&(response.status===207||Array.isArray(payload.missing)&&payload.missing.length>0),checkedAt:new Date().toISOString(),removedAt:tool==='photos'?payload.removedAt:undefined});
+  }catch(error){return unavailable(tool,'response',error,'Auto.dev returned a response the app could not read. Try again later.');}
+}
+
+function unavailable(tool:ProviderTool,stage:string,error:unknown,message:string){
+  // Log the failed stage without sending credentials, VINs or provider payloads to logs.
+  console.error('Vehicle lookup failed',{tool,stage,errorType:error instanceof Error?error.name:'unknown'});
+  return json({error:message},502);
 }

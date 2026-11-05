@@ -93,3 +93,9 @@ Vehicle Research, Media, Pricing and Window Stickers have on-demand provider too
 The lookup endpoint requires a signed-in staff identity, module access and a current or archived inventory VIN. Each click reserves the published Growth per-call price against a separate estimated budget of $2 per UTC day and $10 per UTC month. Reservations are conservative and count attempts even when the provider does not charge. Results stay in the open view and do not write to inventory or persist provider results. Finance estimates use a hypothetical score, with no name or account details. Recall campaigns require an OEM check for applicability and open status.
 
 Window Stickers has separate print paths. Dealer Window Sticker prints vehicle information for the lot with a QR code to its linked Betten Imports listing. The printed sheet omits the dollar price and tells the user when no QR can be generated. Original Manufacturer Sticker opens a dealership-supplied original PDF link stored with the vehicle. The factory build report can be printed for sales reference when VIN-specific data is returned. A missing build record never turns catalog options into verified factory equipment.
+
+### Inventory Desk and vehicle documents
+
+The refreshed desk opens vehicles at Overview. Pricing, Window Stickers, Research and Details sit in the main vehicle navigation. More tools contains book values, media, recon, financials, notes and other tools allowed for the current staff member.
+
+Window Stickers offers three document choices. Dealer sticker prints the vehicle and listing QR code. Original Monroney opens the manufacturer PDF link saved by staff. Factory build report makes a metered Auto.dev request for the VIN’s equipment data. A missing build record offers an empty state, while authorization, connection, allowance and response failures show different messages. Diagnostic logs record only the tool and failed stage.

@@ -34,6 +34,11 @@ export function cleanVehicle(raw:any,observedAt=new Date().toISOString()):Vehicl
  return {...raw,...fields,title:Array.isArray(raw.title)?raw.title.join(' '):typeof raw.title==='string'?raw.title:'',features:Array.isArray(raw.features)?raw.features.filter((v:any)=>typeof v==='string'):[],year:Number.isInteger(Number(raw.year))?Number(raw.year):undefined,vin,stock:String(raw.stock||raw.stockNumber||''),price,mileage,photos,image:photos[0]||'',url:url(raw.url||raw.sourceUrl),exterior:String(raw.exterior||raw.exteriorColor||''),interior:String(raw.interior||raw.interiorColor||''),firstSeen:String(raw.firstSeen||raw.firstSeenAt||sourceObserved),observedAt:sourceObserved};
 }
 export function autoDevOnly(){return (env as any).MARKET_DATA_AUTODEV_ONLY==='true';}
+// A single-vehicle lookup does not need the dealership's records or market snapshots.
+export async function inventoryVehicle(vin:string):Promise<Vehicle|undefined>{
+ const row=await db().prepare('SELECT data FROM inventory WHERE vin=?').bind(vin).first<{data:string}>();
+ return row?JSON.parse(row.data):(await loadSeeds()).vehicles.find(vehicle=>vehicle.vin===vin);
+}
 export async function workspace(req?:Request){
  const {vehicles:seedVehicles,comparables:seedComps}=await loadSeeds();
  const [inv,rec,history,runs,publicSnapshots,dashboardDays]=await Promise.all([db().prepare('SELECT data FROM inventory').all(),db().prepare("SELECT * FROM records WHERE kind != 'system' ORDER BY updated_at DESC").all(),db().prepare('SELECT * FROM audit ORDER BY created_at DESC LIMIT 150').all(),db().prepare('SELECT * FROM sync_runs ORDER BY created_at DESC LIMIT 20').all(),readPublicSourceSnapshots(db()),db().prepare("SELECT data FROM records WHERE kind='system' AND id GLOB 'system:dashboard-day:*' ORDER BY id DESC LIMIT 90").all()]);

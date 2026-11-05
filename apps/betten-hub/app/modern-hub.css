@@ -1,0 +1,29 @@
+/* The Hub and Inventory Desk share the same visual language. */
+.hub-shell { background:#f4f7fb; color:#17263a; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.hub-shell .hub-sidebar { background:#142740; color:#e1ebfa; border-color:#142740; }
+.hub-shell .hub-brand { color:#fff; }
+.hub-shell .hub-brand small,.hub-shell :is(.nav-label,.dealer-name small,.signed-user small) { color:#b9cbe2; }
+.hub-shell .hub-brand>span { background:#f69751; color:#16253c; border-radius:12px; }
+.hub-shell .dealer-name { background:#ffffff0d; border-color:#ffffff18; color:#e1ebfa; }
+.hub-shell .hub-sidebar :is(nav,.sidebar-end) :is(button,a) { color:#d5e1f1; border-radius:9px; }
+.hub-shell .hub-sidebar :is(nav,.sidebar-end) :is(button,a):is(.active,:hover) { color:#fff; background:#294766; }
+.hub-shell .signed-user { color:#e1ebfa; border-color:#ffffff20; }
+.hub-shell .signed-user>span { background:#294766; color:#fff; }
+.hub-shell .hub-topbar { height:60px; color:#465b73; border-color:#dce5f0; }
+.hub-shell .hub-page-title h1 { font-size:clamp(30px,4vw,46px); letter-spacing:-.047em; color:#17263a; }
+.hub-shell .hub-page-title>div>span { color:#526277; font-size:14px; }
+.hub-shell .application-card { border-radius:14px; border-color:#dce5f0; box-shadow:0 2px 6px #14274008; min-height:170px; }
+.hub-shell .application-card h3 { font-size:18px; color:#17263a; }
+.hub-shell .application-card :is(a,.native-app-launch) { font-size:13px; color:#174faf; }
+.hub-shell .application-card .app-icon { border-radius:11px; background:#e9f1ff; color:#174faf; }
+.hub-shell .application-card .app-icon.gold { background:#fff2e3; color:#8a4d0e; }
+.hub-shell .app-search { border-radius:9px; border-color:#cdd9e8; }
+@media(max-width:600px) {
+ .hub-shell .hub-topbar { height:50px; }
+ .hub-shell .application-card { min-height:145px; }
+}
+.hub-shell .hub-sidebar nav { scrollbar-color:#56728e #142740; }
+@media(max-width:760px) {
+ .hub-shell:has(.native-workspace-container:not([hidden])) .message-launcher { display:none; }
+ .hub-shell .native-workspace iframe { min-height:0; min-width:0; }
+}

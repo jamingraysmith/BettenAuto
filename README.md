@@ -25,8 +25,8 @@ The separation release passed 17 permission, bridge and external-application tes
 
 ## Source provenance
 
-- Hub source commit: `a3707772e33dfdc35418e646f0487cec96ad87d8`
-- BettenAuto source commit: `bba9f9856da844dabac992df9a1cc6cc3843a454`
+- Hub source commit: `0d8df9900f4ca64e563f31bbeeef0fb3d547532d`
+- BettenAuto source commit: `d43d30537bb8bd9ec36edbb3090f7c9e79b22f3b`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 
@@ -35,3 +35,5 @@ BettenAuto opens natively inside Hub with the existing employee-bound inventory 
 Hub starts on a clean Applications page with messages, staff directory, customers and information. BettenAuto starts on Inventory, with fewer repeated row labels and no empty market placeholder column; pricing and comparisons remain inside the vehicle. Existing dealership database records and historical imports are retained unchanged for a possible future merge. No destructive schema migration, KeyTrack synchronization or paid provider activation is performed.
 
 The November 5 vehicle tools release adds per-VIN research, financing estimates, factory build reports and a price-free dealer window sticker with a listing QR code. See the Inventory Desk operations guide for plan access and application spending limits.
+
+The redesigned Inventory Desk gives staff a shorter vehicle menu and dedicated choices for the dealer QR sticker, original Monroney PDF, and VIN-specific factory build report.
