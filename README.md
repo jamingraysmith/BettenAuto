@@ -21,15 +21,17 @@ Market comparisons load on vehicle open within the configured free/evaluation al
 
 ## Verification
 
-The current separation release passed 17 permission, bridge and external-application tests, both type checks and production builds. Local browser checks confirmed the clean launcher, inventory-first workspace, absent tracker navigation and external-only KeyTrack link.
+The separation release passed 17 permission, bridge and external-application tests, both type checks and production builds. Local browser checks confirmed the clean launcher, inventory-first workspace, absent tracker navigation and external-only KeyTrack link.
 
 ## Source provenance
 
-- Hub source commit: `918245966d0df4cf358190cb6db18cb02da5decc`
-- BettenAuto source commit: `d3445a233ca022e1fab7f5ff526be30b49938e2d`
+- Hub source commit: `a3707772e33dfdc35418e646f0487cec96ad87d8`
+- BettenAuto source commit: `bba9f9856da844dabac992df9a1cc6cc3843a454`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 
 BettenAuto opens natively inside Hub with the existing employee-bound inventory connection. Hub release 16 / BettenAuto release 31 remove the Key Board, checkout/return, tracker dashboards, imported KeyTrack history screens, work queues, readiness screens and their retired workflow API. KeyTrack is an external website shortcut only and is not embedded. VinSolutions and Dealer.com remain external; vAuto keeps its tested embedded flow.
 
 Hub starts on a clean Applications page with messages, staff directory, customers and information. BettenAuto starts on Inventory, with fewer repeated row labels and no empty market placeholder column; pricing and comparisons remain inside the vehicle. Existing dealership database records and historical imports are retained unchanged for a possible future merge. No destructive schema migration, KeyTrack synchronization or paid provider activation is performed.
+
+The November 5 vehicle tools release adds per-VIN research, financing estimates, factory build reports and a price-free dealer window sticker with a listing QR code. See the Inventory Desk operations guide for plan access and application spending limits.

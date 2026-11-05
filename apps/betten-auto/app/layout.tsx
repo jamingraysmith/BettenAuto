@@ -1,3 +1,4 @@
+import './provider-research.css';
 import type { Metadata } from 'next';
 import './globals.css';
 import './classic.css';

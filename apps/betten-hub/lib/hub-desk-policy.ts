@@ -1,7 +1,7 @@
 /** Fixed native-workspace routes. Never forward arbitrary hosts, paths or service identities. */
 export const deskMethods:Record<string,readonly string[]>={
  'workspace':['GET'],'records':['POST','DELETE'],'live-market':['POST'],
- 'market-status':['GET'],'vehicle/decode':['GET'],'vehicle/research':['GET'],
+ 'market-status':['GET'],'vehicle/decode':['GET'],'vehicle/research':['GET'],'vehicle/provider':['POST'],
  'vehicle-log':['GET'],'import':['POST'],'dealer-import':['POST'],
  'export':['GET'],'restore':['POST'],'sync':['POST']
 };
