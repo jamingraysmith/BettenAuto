@@ -81,12 +81,13 @@ export function WindowStickersPanel({v,form,update,canEdit}:any){
    </div>{sheet}</div>}
    <div className="workspace-actions">
     <a className="table-link" href="https://www.ftc.gov/business-guidance/resources/buyers-guide-fillable-form" target="_blank" rel="noreferrer">Official FTC Buyers Guide <ArrowUpRight size={13}/></a>
-    <button type="button" className="table-link" onClick={()=>navigator.clipboard.writeText([vehicleTitle(v),v.stock?'Stock #'+v.stock:'',v.vin,money(v.price),form.merchandisingDescription||v.description||''].join('\n'))}>Copy sales summary</button>
+    <button type="button" className="table-link" onClick={()=>navigator.clipboard.writeText([vehicleTitle(v),v.stock?'Stock #'+v.stock:'',v.vin,form.merchandisingDescription||v.description||''].join('\n'))}>Copy sales summary</button>
    </div>
   </div>
   <div hidden={documentKind!=='original'} className="document-action">
    <div><h4>Original manufacturer PDF</h4>
     {original?<p>The linked PDF opens in a new tab for printing.</p>:<p>No manufacturer PDF is linked to this vehicle. Paste its link below when you have the original.</p>}
+    {!original&&listing&&<p><a className="table-link" href={listing} target="_blank" rel="noreferrer">Check the dealership listing <ArrowUpRight size={13}/></a></p>}
     {canEdit&&<label className="field"><span>Manufacturer PDF link</span><input type="url" placeholder="https://…" value={form.originalStickerUrl||''} onChange={e=>update('originalStickerUrl',e.target.value)}/><small>Use Save vehicle to keep this link.</small></label>}
    </div>
    {original&&<a className="button primary" href={original} target="_blank" rel="noreferrer">Open original PDF <ArrowUpRight size={16}/></a>}

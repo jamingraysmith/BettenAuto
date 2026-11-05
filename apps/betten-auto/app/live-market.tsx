@@ -10,7 +10,18 @@ const providerName=(v:string)=>v==='autodev'?'Live market':'Authorized market fe
 const safeLink=(v:any)=>{try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:''}catch{return ''}};
 const date=(v:any)=>v?new Date(v).toLocaleString('en-US',{timeZone:'America/Detroit',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'Not supplied';
 
-export function LiveMarket({vehicle,options={},inventoryVehicle=false,autoLookup=false,savedComparables=[],classicControls,onApply}:{vehicle:Vehicle;options?:any;inventoryVehicle?:boolean;autoLookup?:boolean;savedComparables?:any[];classicControls?:any;onApply?:(price:number,basis:string)=>void}){
+export type MarketGridResult = {
+ identity:string;
+ fetchedAt:string;
+ radiusMiles:number|null;
+ stats:ReturnType<typeof samplePricing>;
+};
+
+export function marketGridIdentity(vehicle:Vehicle){
+ return JSON.stringify([vehicle.vin,vehicle.year,vehicle.make,vehicle.model,vehicle.trim,vehicle.condition,vehicle.mileage,vehicle.bodyStyle,vehicle.drivetrain,vehicle.engine,vehicle.engineSize,vehicle.fuelType,vehicle.certified,vehicle.price]);
+}
+
+export function LiveMarket({vehicle,options={},inventoryVehicle=false,autoLookup=false,savedComparables=[],classicControls,onApply,onGridResult}:{vehicle:Vehicle;options?:any;inventoryVehicle?:boolean;autoLookup?:boolean;savedComparables?:any[];classicControls?:any;onGridResult?:(vin:string,result:MarketGridResult)=>void;onApply?:(price:number,basis:string)=>void}){
  const [localRadius,setLocalRadius]=useState('');
  const [status,setStatus]=useState<any>(null),[result,setResult]=useState<any>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[checking,setChecking]=useState(false);
  const pending=useRef<AbortController|null>(null),currentQuery=useRef(''),mounted=useRef(true);
@@ -28,8 +39,13 @@ export function LiveMarket({vehicle,options={},inventoryVehicle=false,autoLookup
  async function lookup(){
   if(!ready||status?.status!=='connected'||!budgetAvailable||pending.current)return;
   const controller=new AbortController(),requestKey=queryKey;pending.current=controller;setBusy(true);setError('');
-  try{const r=await fetch('/api/live-market',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(inventoryVehicle?{vin:vehicle.vin,options:criteria}:{vehicle:{...identity,price:vehicle.price},options:criteria}),signal:controller.signal});const j:any=await r.json();if(!r.ok)throw new Error(j.message||'Live market data is unavailable.');if(!controller.signal.aborted&&currentQuery.current===requestKey)setResult({...j,queryKey:requestKey});}
-  catch(e:any){if(!controller.signal.aborted&&currentQuery.current===requestKey)setError(e.message||'Live market data is unavailable.');}
+  try{const r=await fetch('/api/live-market',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(inventoryVehicle?{vin:vehicle.vin,options:criteria}:{vehicle:{...identity,price:vehicle.price},options:criteria}),signal:controller.signal});const j:any=await r.json();if(!r.ok)throw new Error(j.message||'Live market data is unavailable.');if(controller.signal.aborted||currentQuery.current!==requestKey)return;
+   setResult({...j,queryKey:requestKey});
+   if(onGridResult&&!j.stale&&typeof j.fetchedAt==='string'&&Number.isFinite(Date.parse(j.fetchedAt))){
+    const matches=matchComparables(vehicle,j.listings||[],criteria).matched;
+    onGridResult(vehicle.vin,{identity:marketGridIdentity(vehicle),fetchedAt:j.fetchedAt,radiusMiles:criteria.radiusMiles,stats:samplePricing(vehicle,matches)});
+   }
+  }catch(e:any){if(!controller.signal.aborted&&currentQuery.current===requestKey)setError(e.message||'Live market data is unavailable.');}
   finally{if(pending.current===controller){pending.current=null;setBusy(false)}if(!controller.signal.aborted)connection().then(j=>{if(mounted.current)setStatus(j)}).catch(()=>{});}
  }
  // A short mount delay avoids requests for transient/StrictMode mounts. One

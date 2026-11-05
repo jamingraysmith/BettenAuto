@@ -27,7 +27,11 @@ function Facts({rows}:{rows:Fact[]}){
 }
 
 function BuildReport({vehicle,data,checkedAt}:{vehicle:Vehicle;data:any;checkedAt:string}){
-  const options=objectEntries(data.options).filter(([,value])=>typeof value==='string');
+  const reportedOptions=objectEntries(data.options).filter(([,value])=>typeof value==='string'&&value.trim());
+  const isEmissionsDesignation=(value:unknown)=>typeof value==='string'&&/\b(?:S?ULEV|[PS]ZEV|partial zero emissions? vehicle|super ultra low emissions? vehicle)\b/i.test(value.replace(/[-–]/g,' '));
+  const options=reportedOptions.filter(([,value])=>!isEmissionsDesignation(value));
+  const emissions=reportedOptions.filter(([,value])=>isEmissionsDesignation(value));
+  const listedEquipment=(vehicle.features??[]).filter(item=>item.trim()&&!isEmissionsDesignation(item));
   return <article className="provider-build-report">
     <header><strong>BETTEN IMPORTS</strong><span>Sales reference · Factory build report</span></header>
     <h2>{vehicleTitle(vehicle)}</h2>
@@ -38,10 +42,11 @@ function BuildReport({vehicle,data,checkedAt}:{vehicle:Vehicle;data:any;checkedA
       ['Engine',data.engine],['Transmission',data.transmission],
       ['Exterior',Object.keys(data.exteriorColor||{}).filter(k=>typeof data.exteriorColor[k]==='string').join(', ')],
       ['Interior',Object.keys(data.interiorColor||{}).filter(k=>typeof data.interiorColor[k]==='string').join(', ')],
-      ['Factory options MSRP',usd(data.optionsMsrp)],
     ]}/>
     <h3>Reported factory options and packages</h3>
-    {options.length?<ul>{options.map(([code,name])=><li key={code}><b>{code}</b> · {String(name)}</li>)}</ul>:<p>The build record did not supply an options list.</p>}
+    {options.length?<ul>{options.map(([code,name])=><li key={code}><b>{code}</b> · {String(name)}</li>)}</ul>:<p>The factory record returned no usable package or equipment entries.</p>}
+    {!!emissions.length&&<><h3>Emissions information</h3><ul>{emissions.map(([code,name])=><li key={code}>{String(name)}</li>)}</ul></>}
+    {!!listedEquipment.length&&<><h3>Equipment from Betten’s listing</h3><p>These details come from the dealership listing. Use the manufacturer PDF to confirm factory packages.</p><ul>{listedEquipment.map((name,index)=><li key={index}>{name}</li>)}</ul></>}
     <small>Checked {new Date(checkedAt).toLocaleString('en-US',{timeZone:'America/Detroit'})} Eastern</small>
   </article>;
 }
@@ -102,7 +107,7 @@ function Results({tool,data,vehicle,checkedAt,removedAt}:{tool:ProviderTool;data
 const summaries:Record<ProviderTool,string>={
   vin:'Check the VIN against an additional vehicle data source.',
   specs:'See the specifications available for the matched vehicle configuration.',
-  build:'Look up the factory trim, colors, options and reported options MSRP for this VIN.',
+  build:'Look up the factory trim, colors and equipment available for this VIN.',
   recalls:'See reported U.S. recall campaigns and remedies.',
   photos:'Preview photos from the provider’s retail listings.',
   tco:'Estimate five years of depreciation, fuel, insurance, maintenance and other costs.',

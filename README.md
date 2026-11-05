@@ -25,8 +25,8 @@ The separation release passed 17 permission, bridge and external-application tes
 
 ## Source provenance
 
-- Hub source commit: `0d8df9900f4ca64e563f31bbeeef0fb3d547532d`
-- BettenAuto source commit: `d43d30537bb8bd9ec36edbb3090f7c9e79b22f3b`
+- Hub source commit: `a9852cdefd5a03251192648dbd983b48cb91af94`
+- BettenAuto source commit: `ada36f29ca6d900c0f8d9a304d10fcb5cde33018`
 
 The original deployment histories are intentionally excluded from this clean snapshot.
 

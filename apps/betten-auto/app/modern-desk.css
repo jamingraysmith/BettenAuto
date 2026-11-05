@@ -107,3 +107,39 @@ body { font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFon
  .app-shell.modern-desk .desk-vehicle-drawer .drawer-footer { padding-inline:13px; }
  .app-shell.modern-desk .desk-drawer-tabs { scrollbar-width:thin; }
 }
+
+/* Dense pricing grid and competitive workspace. */
+.app-shell.modern-desk .desk-table { min-width:825px; }
+.app-shell.modern-desk .desk-table td { padding-block:9px; }
+.app-shell.modern-desk .desk-table .vehicle-thumb { width:58px; height:42px; }
+.app-shell.modern-desk .desk-table :is(th,td):first-child { position:sticky; left:0; z-index:1; }
+.app-shell.modern-desk .desk-table th:first-child { background:#edf3fa; }
+.app-shell.modern-desk .desk-table td:first-child { background:#fff; }
+.app-shell.modern-desk .desk-table tr:is(:hover,:focus-within) td:first-child { background:#f2f7ff; }
+.desk-market-percent { display:block; color:#285b86; font-size:11px; margin-top:3px; }
+.desk-market-percent.above { color:#a32433; }
+.app-shell.modern-desk .classic-market { border:1px solid #dce5f0; border-radius:14px; overflow:hidden; background:#fff; }
+.app-shell.modern-desk .classic-market .classic-subtabs { min-height:46px; gap:12px; padding:0 16px; background:white; border-color:#dce5f0; }
+.app-shell.modern-desk .classic-market .classic-subtabs button { padding:10px 9px; font-size:13px; }
+.app-shell.modern-desk .classic-market-body { grid-template-columns:210px minmax(0,1fr); }
+.app-shell.modern-desk .competitive-criteria { background:#f5f8fd; border-color:#dce5f0; padding:16px; color:#233d5b; }
+.app-shell.modern-desk .competitive-criteria h3 { font-size:15px; margin-bottom:14px; font-weight:720; }
+.app-shell.modern-desk .competitive-criteria select { min-height:33px; border:1px solid #cdd9e8; border-radius:7px; padding:5px 8px; }
+.app-shell.modern-desk .classic-price-main { padding:16px; }
+.app-shell.modern-desk .classic-metrics { grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+.app-shell.modern-desk .classic-metrics>div { text-align:left; padding:10px; border:1px solid #dce5f0; border-radius:9px; background:#f7faff; }
+.app-shell.modern-desk .classic-metrics span { font-size:11px; color:#405975; }
+.app-shell.modern-desk .classic-metrics strong { color:#173253; font-size:clamp(16px,2vw,23px); font-weight:720; white-space:nowrap; }
+.app-shell.modern-desk .classic-gauges { grid-template-columns:minmax(140px,.85fr) minmax(170px,1.15fr); gap:10px; margin-top:12px; }
+.app-shell.modern-desk .classic-gauges>div { padding:12px; background:#fff; border:1px solid #dce5f0; border-radius:10px; }
+.app-shell.modern-desk .classic-gauges h3 { font-weight:700; color:#173253; }
+.app-shell.modern-desk .classic-comp-table th { background:#edf3fa; }
+.app-shell.modern-desk .vehicle-pricing-plan { margin:12px 0; border-color:#dce5f0; border-radius:12px; }
+@media(max-width:700px) {
+ .app-shell.modern-desk .classic-market-body { grid-template-columns:1fr; }
+ .app-shell.modern-desk .competitive-criteria { border-right:0; border-bottom:1px solid #dce5f0; }
+ .app-shell.modern-desk .classic-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:480px) {
+ .app-shell.modern-desk .classic-gauges { grid-template-columns:1fr; }
+}
